@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {   
-        // $products = [];
+        $products = [];
         if($request->valid){
             if($request->valid === "no"){
                 $products = Product::where('is_valid', '=', 0)
@@ -53,10 +53,9 @@ class ProductController extends Controller
             }
 
             
-        }else{
-            $products = Product::orderBy('created_at', 'desc')->get();
         }
         
+        // dd($products);
 
         return view('tables.products')->with('products', $products);
     }

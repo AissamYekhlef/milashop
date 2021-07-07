@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         Product::factory()->create([
-            'title' => 'watch',
+            'title' => 'apple watch',
             'created_by' => '2',
             'state' => 'very_good',
             'photo' => '1_7.jpg',
@@ -35,6 +35,14 @@ class ProductSeeder extends Seeder
             'state' => 'very_good',
             'photo' => '1_iphone12.jpg',
             'marque' => 'apple',
+        ]);
+        Product::factory()->create([
+            'title' => 'Sumsung Galaxy S10',
+            'description' => 'Sumsung S10 new version',
+            'created_by' => '3',
+            'state' => 'very_good',
+            'photo' => '8_sumsungs10.jpg',
+            'marque' => 'Sumsung',
         ]);
     }
 }

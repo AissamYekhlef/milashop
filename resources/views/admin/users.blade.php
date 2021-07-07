@@ -8,7 +8,7 @@
 @endsection
 
 @section('card-body')
-    @can('users.*') 
+    @if(auth()->user()->is_admin) 
         @include('tables.users')
     @else
         <p>Sorry, You don't have the permission for this page</p>    

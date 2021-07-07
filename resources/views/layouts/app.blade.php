@@ -64,11 +64,11 @@
                         @endauth
                         
                         {{-- المستخدم يجب ان يكون له الإظن باالوصول  --}}
-                        @can('users.*')
+                        @if(auth()->user()->is_admin)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
                         </li>
-                        @endcan
+                        @endif
 
                         
                         
