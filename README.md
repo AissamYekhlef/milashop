@@ -9,6 +9,5 @@ Application how to add and mange users and products
 - Run __npm install__
 - Run __composer install__
 - Run __php artisan key:generate__
-- Run __npm nun install__
 - Run __php artisan migrate --seed__ 
 - Run the Application __php artisan serve__
