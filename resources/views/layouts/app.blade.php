@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title') </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
+
 </head>
 <body>
     <div id="app">
@@ -32,9 +34,50 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">  
+                            @include('components.categories_list')
+                        </li>
+                        <li class="nav-item">
+                            {{-- <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a> --}}
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('Products') }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('products.index')}}">{{ __('All') }}</a>
+                                <a class="dropdown-item" href="{{route('products.index', ['valid' => 'yes'])}}">{{ __('Valid') }}</a>
+                                <a class="dropdown-item" href="{{route('products.index', ['valid' => 'no'])}}">{{ __('Not Valid') }}</a>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        {{-- المستخدم يجب ان يكون داخل --}}
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.create') }}">{{ __('Add Product') }}</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.my') }}">{{ __('My Products') }}</a>
+                            </li>   
+                        @endauth
+                        
+                        {{-- المستخدم يجب ان يكون له الإظن باالوصول  --}}
+                        @can('users.*')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
+                        </li>
+                        @endcan
 
+                        
+                        
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" action=" {{ route('products.search') }}" method="POST">
+                        @csrf
+                    <input class="form-control mr-sm-2" name="search" value="{{ Request::get('search') }}" type="search" placeholder="Search Product" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -63,7 +106,9 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    <a class="dropdown-item" href="{{ route('users.profile', ['user' => Auth::id() ]) }}">
+                                        {{ __('Profile') }}
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -79,5 +124,7 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
 </body>
 </html>
