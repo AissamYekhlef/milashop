@@ -64,18 +64,20 @@
                         @endauth
                         
                         {{-- المستخدم يجب ان يكون له الإظن باالوصول  --}}
-                        @if(auth()->user()->is_admin)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
-                        </li>
-                        @endif
-
+                        @auth
+                            @if(auth()->user()->is_admin)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __('Users') }}</a>
+                            </li>
+                            @endif
+                        @endauth
+                        
                         
                         
                     </ul>
                     <form class="form-inline my-2 my-lg-0" action=" {{ route('products.search') }}" method="POST">
                         @csrf
-                    <input class="form-control mr-sm-2" name="search" value="{{ Request::get('search') }}" type="search" placeholder="Search Product" aria-label="Search">
+                        <input class="form-control mr-sm-2" name="search" value="{{ Request::get('search') }}" type="search" placeholder="Search Product" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
 

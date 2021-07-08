@@ -8,10 +8,13 @@
 @endsection
 
 @section('card-body')
-    @if(auth()->user()->is_admin) 
-        @include('tables.users')
-    @else
-        <p>Sorry, You don't have the permission for this page</p>    
-    @endcan
+    @auth
+        @if(auth()->user()->is_admin) 
+            @include('tables.users')
+        @else
+            <p>Sorry, You don't have the permission for this page</p>    
+        @endcan
 
+    @endauth
+    
 @endsection
