@@ -6,7 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-
+use Illuminate\Support\Facades\App;
 
 Route::get('/', function () {
     return redirect()->route('products.index');
@@ -52,3 +52,12 @@ Route::get('/products/{product}/payment/success', [PaymentController::class, 'su
 Route::get('/products/{product}/payment/failed', [PaymentController::class, 'failed'])->name('products.payment.failed');
 // Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 
+Route::get('/locale', function(){
+    return view('translation');
+});
+
+Route::get('/locale/{locale}', function($locale){
+    App::setLocale($locale);
+
+    return view('translation');
+});
