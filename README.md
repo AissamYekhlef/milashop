@@ -12,3 +12,6 @@ Application how to add and mange users and products
 - Run __php artisan storage:link__
 - Run __php artisan migrate --seed__ 
 - Run the Application __php artisan serve__
+
+### Screenshots
+- you can see the screenshots from [HERE](https://github.com/AissamYekhlef/milashop/tree/main/public/assets/images/screenshots)
