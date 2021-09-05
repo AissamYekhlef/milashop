@@ -1,4 +1,4 @@
-# Simple Ecommerce app using laravel, bootstrap
+# Ecommerce app using laravel, bootstrap
 Application how to add and mange users and products
 
 ## Getting Started
@@ -9,5 +9,6 @@ Application how to add and mange users and products
 - Run __npm install__
 - Run __composer install__
 - Run __php artisan key:generate__
+- Run __php artisan storage:link__
 - Run __php artisan migrate --seed__ 
 - Run the Application __php artisan serve__
