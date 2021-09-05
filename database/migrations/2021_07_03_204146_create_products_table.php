@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
                     ->nullable()
                     ->constrained('users')
                     ->onDelete('cascade');
-            $table->string('state')->default('not bad');
+            $table->string('state')->default('not_bad');
             $table->foreignId('category_id')
                     ->nullable()
                     ->constrained('categories')
