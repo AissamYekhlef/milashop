@@ -21,4 +21,4 @@ Application how to add and manage users and products, some usecases :
 
 ### Screenshots
 - you can see the screenshots from [HERE](https://github.com/AissamYekhlef/milashop/blob/main/public/assets/images/screenshots/Screenshots.md)
-- 
+
